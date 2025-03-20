@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    image: ml-test-automation:${VERSION:-latest}
+    container_name: ml-test-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../models:/app/models
+      - ../logs:/app/logs
+      - ../data:/app/data
+    environment:
+      - LOG_LEVEL=INFO
+      - MODEL_PATH=/app/models
+      - DATA_PATH=/app/data
+    command: python -m src.api.prediction_api
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  training:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    image: ml-test-automation:${VERSION:-latest}
+    container_name: ml-test-training
+    restart: "no"
+    volumes:
+      - ../models:/app/models
+      - ../logs:/app/logs
+      - ../data:/app/data
+    environment:
+      - LOG_LEVEL=INFO
+      - MODEL_PATH=/app/models
+      - DATA_PATH=/app/data
+    command: python -m src.models.train_model --save-model
+
+  optimizer:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    image: ml-test-automation:${VERSION:-latest}
+    container_name: ml-test-optimizer
+    restart: "no"
+    volumes:
+      - ../models:/app/models
+      - ../logs:/app/logs
+      - ../data:/app/data
+      - ../results:/app/results
+    environment:
+      - LOG_LEVEL=INFO
+      - MODEL_PATH=/app/models
+      - DATA_PATH=/app/data
+      - RESULTS_PATH=/app/results
+    command: python -m src.execution.test_scheduler --optimization-level=high
+
+  monitoring:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    image: ml-test-automation:${VERSION:-latest}
+    container_name: ml-test-monitor
+    restart: unless-stopped
+    ports:
+      - "8050:8050"
+    volumes:
+      - ../models:/app/models
+      - ../logs:/app/logs
+      - ../results:/app/results
+    environment:
+      - LOG_LEVEL=INFO
+      - MODEL_PATH=/app/models
+      - RESULTS_PATH=/app/results
+    command: python -m src.reporting.dashboard --port=8050
+
+volumes:
+  models:
+  logs:
+  data:
+  results: 
