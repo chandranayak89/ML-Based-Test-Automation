@@ -2,6 +2,17 @@
 
 An intelligent test automation framework leveraging machine learning to predict test failures, optimize test execution, and improve overall testing efficiency.
 
+## Project Status
+
+🏗️ **Currently in Development**
+
+- ✅ **Phase 1: Project Setup** - Completed *(GitHub repository, directory structure, configuration files)*
+- ✅ **Phase 2: Data Handling & Processing** - Completed *(Data collection, preprocessing, exploratory analysis)*
+- ✅ **Phase 3: Feature Engineering** - Completed *(Feature extraction, selection, and optimization)*
+- 🚧 **Phase 4: Model Development** - Pending
+- 🚧 **Phase 5: Test Optimization Framework** - Pending
+- 🚧 **Phase 6: Integration & Deployment** - Pending
+
 ## Features
 
 - **Predictive Test Case Failure Analysis**: ML models that predict potential test case failures, reducing redundant executions and improving test efficiency.
@@ -12,6 +23,23 @@ An intelligent test automation framework leveraging machine learning to predict 
 - **Automated Root Cause Analysis**: ML techniques to classify and diagnose test failures, reducing manual debugging efforts.
 - **Scalable and Adaptive Framework**: A scalable framework that adapts to evolving test environments and dynamically adjusts testing strategies.
 - **Performance and Accuracy Metrics**: Model evaluation using precision, recall, and F1-score to ensure reliable test failure predictions.
+
+## Implementation Details
+
+### Phase 1: Project Setup
+- Created GitHub repository and project structure
+- Configured development environment
+- Set up logging, configuration, and basic modules
+
+### Phase 2: Data Handling & Processing
+- Implemented data collection from test logs
+- Created data preprocessing pipeline for cleaning and transforming data
+- Performed exploratory data analysis on test execution logs
+
+### Phase 3: Feature Engineering
+- Developed comprehensive feature extraction module for test data
+- Implemented feature selection techniques (correlation analysis, importance ranking, etc.)
+- Created unified feature engineering pipeline for model preparation
 
 ## Setup
 
@@ -48,19 +76,20 @@ An intelligent test automation framework leveraging machine learning to predict 
 
 ### Usage
 
-#### Training Prediction Models
+#### Collecting and Processing Test Data
+```
+python src/data/collect_data.py
+python src/data/preprocess_data.py
+```
+
+#### Engineering Features for ML Models
+```
+python src/features/build_features.py
+```
+
+#### Training Prediction Models (Coming Soon)
 ```
 python src/models/train_models.py
-```
-
-#### Running Optimized Test Suite
-```
-python src/execution/test_scheduler.py
-```
-
-#### Analyzing Test Results
-```
-python src/analysis/analyze_results.py
 ```
 
 ## Project Structure
@@ -73,10 +102,10 @@ ML-Based-Test-Automation/
 ├── src/                  # Source code
 │   ├── data/             # Data collection and processing scripts
 │   ├── features/         # Feature engineering code
-│   ├── models/           # Model training and evaluation code
-│   ├── execution/        # Test execution and scheduling code
-│   ├── analysis/         # Result analysis and reporting code
-│   └── integration/      # CI/CD integration code
+│   ├── models/           # Model training and evaluation code (coming soon)
+│   ├── execution/        # Test execution and scheduling code (coming soon)
+│   ├── analysis/         # Result analysis and reporting code (coming soon)
+│   └── integration/      # CI/CD integration code (coming soon)
 ├── tests/                # Unit tests for the framework
 ├── config.py             # Configuration settings
 ├── requirements.txt      # Python dependencies
