@@ -10,7 +10,7 @@ An intelligent test automation framework leveraging machine learning to predict 
 - ✅ **Phase 2: Data Handling & Processing** - Completed *(Data collection, preprocessing, exploratory analysis)*
 - ✅ **Phase 3: Feature Engineering** - Completed *(Feature extraction, selection, and optimization)*
 - ✅ **Phase 4: Model Development** - Completed *(Baseline models, training pipeline, evaluation metrics, prediction API)*
-- 🚧 **Phase 5: Test Optimization Framework** - Pending
+- ✅ **Phase 5: Test Optimization Framework** - Completed *(Test scheduler, suite optimizer, root cause analyzer, impact analyzer)*
 - 🚧 **Phase 6: Integration & Deployment** - Pending
 
 ## Features
@@ -23,6 +23,8 @@ An intelligent test automation framework leveraging machine learning to predict 
 - **Automated Root Cause Analysis**: ML techniques to classify and diagnose test failures, reducing manual debugging efforts.
 - **Scalable and Adaptive Framework**: A scalable framework that adapts to evolving test environments and dynamically adjusts testing strategies.
 - **Performance and Accuracy Metrics**: Model evaluation using precision, recall, and F1-score to ensure reliable test failure predictions.
+- **Code Change Impact Analysis**: Intelligently identifies which tests are affected by code changes to prioritize test execution.
+- **Test Suite Optimization**: Reduces redundancy in test suites while maximizing coverage and minimizing execution time.
 
 ## Implementation Details
 
@@ -47,6 +49,14 @@ An intelligent test automation framework leveraging machine learning to predict 
 - Developed model evaluation tools with robust metrics and visualizations
 - Built a prediction API for real-time test prioritization
 - Implemented model persistence and versioning capabilities
+
+### Phase 5: Test Optimization Framework
+- Developed a test scheduler that prioritizes tests based on ML predictions
+- Implemented a test suite optimizer to reduce redundancy and maximize coverage
+- Created a root cause analyzer for identifying common failure patterns
+- Built an impact analyzer to determine which tests are affected by code changes
+- Designed optimization algorithms for time-constrained test execution
+- Implemented dependency-aware test scheduling and execution
 
 ## Setup
 
@@ -115,6 +125,21 @@ curl -X POST "http://localhost:8000/predict/single" \
      -d '{"test_id": "TEST-1001", "test_name": "test_login", ...}'
 ```
 
+#### Optimizing Test Execution
+```
+# Generate an optimized test schedule
+python src/execution/test_scheduler.py
+
+# Optimize an existing test suite
+python src/execution/suite_optimizer.py
+
+# Analyze root causes of test failures
+python src/analysis/root_cause_analyzer.py
+
+# Determine tests affected by code changes
+python src/analysis/impact_analyzer.py
+```
+
 ## Project Structure
 
 ```
@@ -132,8 +157,13 @@ ML-Based-Test-Automation/
 │   │   └── predict.py          # Prediction functionality
 │   ├── api/              # API for model deployment
 │   │   └── prediction_api.py   # FastAPI prediction service
-│   ├── execution/        # Test execution and scheduling code (coming soon)
-│   ├── analysis/         # Result analysis and reporting code (coming soon)
+│   ├── execution/        # Test execution and scheduling code
+│   │   ├── test_scheduler.py   # Test prioritization and scheduling
+│   │   └── suite_optimizer.py  # Test suite optimization
+│   ├── analysis/         # Result analysis and reporting code
+│   │   ├── root_cause_analyzer.py  # Failure pattern analysis
+│   │   └── impact_analyzer.py      # Code change impact analysis
+│   ├── reporting/        # Reporting and visualization (coming soon)
 │   └── integration/      # CI/CD integration code (coming soon)
 ├── tests/                # Unit tests for the framework
 ├── config.py             # Configuration settings
