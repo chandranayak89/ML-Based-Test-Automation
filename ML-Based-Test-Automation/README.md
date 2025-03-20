@@ -9,7 +9,7 @@ An intelligent test automation framework leveraging machine learning to predict 
 - ✅ **Phase 1: Project Setup** - Completed *(GitHub repository, directory structure, configuration files)*
 - ✅ **Phase 2: Data Handling & Processing** - Completed *(Data collection, preprocessing, exploratory analysis)*
 - ✅ **Phase 3: Feature Engineering** - Completed *(Feature extraction, selection, and optimization)*
-- 🚧 **Phase 4: Model Development** - Pending
+- ✅ **Phase 4: Model Development** - Completed *(Baseline models, training pipeline, evaluation metrics, prediction API)*
 - 🚧 **Phase 5: Test Optimization Framework** - Pending
 - 🚧 **Phase 6: Integration & Deployment** - Pending
 
@@ -40,6 +40,13 @@ An intelligent test automation framework leveraging machine learning to predict 
 - Developed comprehensive feature extraction module for test data
 - Implemented feature selection techniques (correlation analysis, importance ranking, etc.)
 - Created unified feature engineering pipeline for model preparation
+
+### Phase 4: Model Development
+- Implemented baseline machine learning models for test failure prediction
+- Created a comprehensive model training pipeline with hyperparameter tuning
+- Developed model evaluation tools with robust metrics and visualizations
+- Built a prediction API for real-time test prioritization
+- Implemented model persistence and versioning capabilities
 
 ## Setup
 
@@ -87,9 +94,25 @@ python src/data/preprocess_data.py
 python src/features/build_features.py
 ```
 
-#### Training Prediction Models (Coming Soon)
+#### Training Prediction Models
 ```
-python src/models/train_models.py
+python src/models/train_model.py
+```
+
+#### Evaluating Models
+```
+python src/models/evaluate_model.py
+```
+
+#### Using the Prediction API
+```
+# Start the API server
+python src/api/prediction_api.py
+
+# Make predictions via HTTP requests
+curl -X POST "http://localhost:8000/predict/single" \
+     -H "Content-Type: application/json" \
+     -d '{"test_id": "TEST-1001", "test_name": "test_login", ...}'
 ```
 
 ## Project Structure
@@ -102,7 +125,13 @@ ML-Based-Test-Automation/
 ├── src/                  # Source code
 │   ├── data/             # Data collection and processing scripts
 │   ├── features/         # Feature engineering code
-│   ├── models/           # Model training and evaluation code (coming soon)
+│   ├── models/           # Model training and evaluation code
+│   │   ├── baseline_models.py  # Baseline ML models implementation
+│   │   ├── train_model.py      # Model training pipeline
+│   │   ├── evaluate_model.py   # Model evaluation tools
+│   │   └── predict.py          # Prediction functionality
+│   ├── api/              # API for model deployment
+│   │   └── prediction_api.py   # FastAPI prediction service
 │   ├── execution/        # Test execution and scheduling code (coming soon)
 │   ├── analysis/         # Result analysis and reporting code (coming soon)
 │   └── integration/      # CI/CD integration code (coming soon)
